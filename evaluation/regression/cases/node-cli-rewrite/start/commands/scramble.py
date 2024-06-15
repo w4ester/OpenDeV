@@ -1,7 +1,7 @@
-import random
+import secrets
 
 
 def scramble_string(s):
     s_list = list(s)
-    random.shuffle(s_list)
+    secrets.SystemRandom().shuffle(s_list)
     return ''.join(s_list)
