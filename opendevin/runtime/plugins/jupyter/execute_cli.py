@@ -15,7 +15,7 @@ POST_URL = f'http://localhost:{PORT}/execute'
 
 for i in range(10):
     try:
-        response = requests.post(POST_URL, json={'kernel_id': kernel_id, 'code': code})
+        response = requests.post(POST_URL, json={'kernel_id': kernel_id, 'code': code}, timeout=60)
         if '500: Internal Server Error' not in response.text:
             print(response.text)
             break
