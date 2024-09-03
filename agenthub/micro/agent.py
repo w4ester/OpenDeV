@@ -50,7 +50,7 @@ class MicroAgent(Agent):
         super().__init__(llm)
         if 'name' not in self.agent_definition:
             raise ValueError('Agent definition must contain a name')
-        self.prompt_template = Environment(loader=BaseLoader).from_string(self.prompt)
+        self.prompt_template = Environment(loader=BaseLoader, autoescape=True).from_string(self.prompt)
         self.delegates = all_microagents.copy()
         del self.delegates[self.agent_definition['name']]
 
