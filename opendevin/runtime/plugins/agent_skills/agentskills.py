@@ -26,6 +26,7 @@ import PyPDF2
 from openai import OpenAI
 from pptx import Presentation
 from pylatexenc.latex2text import LatexNodes2Text
+from security import safe_command
 
 CURRENT_FILE = None
 CURRENT_LINE = 1
@@ -64,8 +65,7 @@ def _lint_file(file_path: str) -> Optional[str]:
         ]
 
         # Run the command using subprocess and redirect stderr to stdout
-        result = subprocess.run(
-            command,
+        result = safe_command.run(subprocess.run, command,
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT,
         )
